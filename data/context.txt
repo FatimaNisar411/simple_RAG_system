@@ -1,0 +1,5 @@
+Large Language Models (LLMs) are AI systems trained on huge text corpora to understand and generate human-like language. They use transformer architecture to process input text and are used in tasks like summarization, question answering, translation, and more.
+
+Vector databases store and index embeddings (numerical representations of text) so that similar items can be efficiently retrieved. ChromaDB is one such vector store that can be used with sentence embeddings for RAG systems.
+
+Sentence embeddings are fixed-size numerical representations of entire sentences that capture their semantic meaning. Models like all-MiniLM-L6-v2 or BERT can be used to generate them.
