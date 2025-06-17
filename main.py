@@ -16,3 +16,7 @@ class Question(BaseModel):
 def ask(question: Question):
     response = answer_question(question.query)
     return {"answer": response}
+
+@app.get("/ping")
+def ping():
+    return {"message": "pong"}
