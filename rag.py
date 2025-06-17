@@ -4,20 +4,25 @@ from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunct
 from transformers import pipeline
 import os
 
+print("🔧 Starting RAG setup...")
+
 # Initialize embedding model
+print("📌 Loading embedding model...")
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
 # Setup ChromaDB
+print("📦 Setting up ChromaDB...")
 chroma_client = chromadb.Client()
 collection = chroma_client.get_or_create_collection(
     name="rag_docs",
     embedding_function=SentenceTransformerEmbeddingFunction("all-MiniLM-L6-v2")
 )
 
-# Load HF model (use a small CPU-friendly model like flan-t5-base or tiny-gpt2)
-generator = pipeline("text2text-generation", model="google/flan-t5-base")
+# Load HF model
+print("🧠 Loading Hugging Face model...")
+generator = pipeline("text2text-generation", model="google/flan-t5-base", device=-1)
+print("✅ HF model loaded.")
 
-# Flag to prevent loading again
 _loaded = False
 
 def load_documents():
