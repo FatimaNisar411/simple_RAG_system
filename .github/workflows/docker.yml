@@ -12,6 +12,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Test docker login manually
+        run: |
+          curl -s -X POST \
+          -H "Content-Type: application/json" \
+          -d '{ "username": "YOUR_DOCKER_USERNAME", "password": "YOUR_PAT" }' \
+          https://hub.docker.com/v2/users/login \
+          | jq -r .token
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
